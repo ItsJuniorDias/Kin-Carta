@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "kincarta",
+    "slug": "kincarta",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "kincarta"
+}

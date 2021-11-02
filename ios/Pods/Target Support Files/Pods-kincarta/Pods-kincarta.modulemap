@@ -1,0 +1,6 @@
+module Pods_kincarta {
+  umbrella header "Pods-kincarta-umbrella.h"
+
+  export *
+  module * { export * }
+}
