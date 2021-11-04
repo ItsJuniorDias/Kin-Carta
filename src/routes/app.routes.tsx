@@ -5,6 +5,7 @@ import { useTheme } from 'styled-components'
 const { Navigator, Screen} = createNativeStackNavigator();
 
 import Contacts from '../screens/Contacts'
+import Details from '../screens/Details'
 
 export function AppRoutes() {
   const theme = useTheme();
@@ -21,6 +22,12 @@ export function AppRoutes() {
       <Screen
         name="Contacts"
         component={Contacts}
+      />
+
+      <Screen
+        name="Details"
+        component={Details}
+        options={{ title: '' }}
       />
     </Navigator>
   )

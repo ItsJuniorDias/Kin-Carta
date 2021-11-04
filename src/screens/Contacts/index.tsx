@@ -10,6 +10,8 @@ import {
   ContentRow,
   Title,
   SubtTitle,
+  Divider,
+  ContentDivider
 } from './styles';
 
 interface Props {
@@ -22,14 +24,16 @@ const DATAobject = [
     data: [
       {
         name: "Winnie-the-Pooh",
-        id: "19",
+        id: '19',
         smallImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/winnie-the-pooh-small.jpg",
+        largeImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/winnie-the-pooh-large.jpg",
         companyName: "Honey Bear, Inc",
       },
       {
         name: "Miss Piggy",
         id: "13",
         smallImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/miss-piggy-small.jpg",
+        largeImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/miss-piggy-large.jpg",
         companyName: "Muppets, Baby",
       },
     ]
@@ -38,16 +42,18 @@ const DATAobject = [
     title: "Other Contacts",
     data: [
       {
-        name: "Winnie-the-Pooh",
-        id: "19",
-        smallImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/winnie-the-pooh-small.jpg",
-        companyName: "Honey Bear, Inc",
+        name: "Miss Piggy",
+        id: "14",
+        smallImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/miss-piggy-small.jpg",
+        largeImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/miss-piggy-large.jpg",
+        companyName: "Muppets, Baby",
       },
       {
-        name: "Miss Piggy",
-        id: "13",
-        smallImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/miss-piggy-small.jpg",
-        companyName: "Muppets, Baby",
+        name: "Winnie-the-Pooh",
+        id: "20",
+        smallImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/winnie-the-pooh-small.jpg",
+        largeImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/winnie-the-pooh-large.jpg",
+        companyName: "Honey Bear, Inc",
       },
     ]
   },
@@ -55,21 +61,17 @@ const DATAobject = [
 
 
 
-const Contacts = ({ title } : Props) => {
+const Contacts = ({ title, navigation } : Props) => {
 
-  const ItemFirst = ({ props }) => {
-    console.log(props, 'Item')
-   return (
-    <ContactContainer>
-      <Text>{props}</Text>
-    </ContactContainer>
-  )};
-
-  const Item = ({ title, avatarUser, companyName }: any) => {
+  const CardContact = ({ title, avatarUser, companyName, avatarLarge }: any) => {
     console.log(title, 'item')
    return(
      <>
-     <ContentRow>
+     <ContentRow onPress={() => navigation.navigate('Details', {
+       avatarLarge,
+       title,
+       companyName,
+     })}>
          <Avatar
            source={{ uri: `${avatarUser}`}}
          />
@@ -87,10 +89,17 @@ const Contacts = ({ title } : Props) => {
       <SectionList
         sections={DATAobject}
         keyExtractor={(item, index) => item.id}
+        ItemSeparatorComponent={() => (
+        <ContentDivider>
+          <Divider />
+         </ContentDivider>
+        )}
+        // contentContainerStyle={{ paddingBottom: 20, backgroundColor: 'blue' }}
         renderItem={({ item }) => (
-            <Item
+            <CardContact
               title={item.name}
               avatarUser={item.smallImageURL}
+              avatarLarge={item.largeImageURL}
               companyName={item.companyName}
             />
          )}
