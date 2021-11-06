@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, SectionList, Text } from 'react-native';
+import { useSelector } from 'react-redux';
+
+import api from '../../services/api';
+import { IContact } from '../../store/modules/contact/types';
 
 import {
   Container,
@@ -62,15 +66,81 @@ const DATAobject = [
 
 
 const Contacts = ({ title, navigation } : Props) => {
+  const [contact, setContact] = useState([]);
 
-  const CardContact = ({ title, avatarUser, companyName, avatarLarge }: any) => {
-    console.log(title, 'item')
+  const [data, setData] = useState([])
+
+  const groupBy = (array, key) => {
+    return array.reduce((result, currentValue) => {
+      (result[currentValue[key]] = result[currentValue[key]] || []).push(currentValue);
+
+      return result;
+    }, {})
+  }
+
+  useEffect(() => {
+    api.get('').then((response) => {
+      const isFavoriteData = groupBy(response.data, 'isFavorite');
+
+      console.log(isFavoriteData.false, 'IS Favorite false');
+
+      const formatDataContact =
+      [{ title: 'Favorite Contact', data: [...isFavoriteData.true].sort((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (a.name < b.name) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      })},
+      { title: 'Other Contact', data: [...isFavoriteData.false].sort((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (a.name < b.name) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      })}];
+
+      console.log(formatDataContact, 'FormatData')
+
+      setContact(formatDataContact);
+    })
+
+
+  }, [])
+
+  console.log(contact, 'Contact Json')
+  console.log(data, 'DATA')
+
+  const contacts = useSelector(state => state);
+
+  console.log(contacts, 'State')
+
+  const CardContact = ({
+    title,
+    avatarUser,
+    companyName,
+    avatarLarge,
+    phone,
+    address,
+    birthdate,
+    emailAddress
+  }: any) => {
    return(
      <>
      <ContentRow onPress={() => navigation.navigate('Details', {
        avatarLarge,
        title,
        companyName,
+       phone,
+       address,
+       birthdate,
+       emailAddress
      })}>
          <Avatar
            source={{ uri: `${avatarUser}`}}
@@ -87,7 +157,7 @@ const Contacts = ({ title, navigation } : Props) => {
   return(
     <Container>
       <SectionList
-        sections={DATAobject}
+        sections={contact}
         keyExtractor={(item, index) => item.id}
         ItemSeparatorComponent={() => (
         <ContentDivider>
@@ -101,6 +171,10 @@ const Contacts = ({ title, navigation } : Props) => {
               avatarUser={item.smallImageURL}
               avatarLarge={item.largeImageURL}
               companyName={item.companyName}
+              phone={item.phone}
+              address={item.address}
+              birthdate={item.birthdate}
+              emailAddress={item.emailAddress}
             />
          )}
         renderSectionHeader={({ section: { title } }) => (

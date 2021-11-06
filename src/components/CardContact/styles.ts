@@ -20,6 +20,7 @@ export const NumberType = styled.Text`
   font-size: ${RFValue(16)}px;
   color: ${({ theme }) => theme.colors.blackText};
   margin-top: ${RFValue(4)}px;
+  height: ${RFValue(50)}px;
 `;
 
 export const Touch = styled(TouchableOpacity)``;

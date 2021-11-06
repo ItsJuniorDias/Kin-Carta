@@ -15,19 +15,16 @@ import {
   NameUser,
   Number,
   DividerHeader,
-  Body,
-  ContentBody,
-  TypeNumber,
-  NumberType,
-  IconContent,
-  Touch
 } from './styles';
 
-interface PropsRoutes {
+interface AvatarProps {
   avatarLarge: string;
-  tite: string;
+  title: string;
   companyName: string;
-  params: any;
+}
+
+interface PropsRoutes {
+  params: AvatarProps;
 }
 
 
@@ -36,7 +33,8 @@ const Details = () => {
   const route = useRoute<PropsRoutes>();
   console.log(route.params, 'PARAMS')
 
-  const { avatarLarge, title, companyName } = route.params;
+  const { avatarLarge, title, companyName, phone: { home , mobile, work},
+  address: { city, country, state, street, zipCode }, birthdate, emailAddress } = route.params;
 
   return (
     <Container>
@@ -55,39 +53,39 @@ const Details = () => {
 
        <DividerHeader />
 
-         <CardContact
+        {!mobile === '' && <CardContact
            title="Mobile"
-           subTitle="916-372-5031"
+           subTitle={mobile}
            isNumber
-         />
+         />}
 
-          <CardContact
+         {home && <CardContact
            title="Home"
-           subTitle="916-391-1816"
+           subTitle={home}
            isNumber
-         />
+         />}
 
-         <CardContact
+        {work &&  <CardContact
            title="Work"
-           subTitle="771-881-8381"
+           subTitle={work}
            isNumber
-         />
+         />}
 
        <DividerHeader />
 
         <CardContact
            title="Address"
-           subTitle="Rua Dauto de oliveira, 502"
+           subTitle={`${street} - ${city}, ${state} ${zipCode}, ${country}`}
          />
 
          <CardContact
            title="Birthdate"
-           subTitle="December 4, 1980"
+           subTitle={birthdate}
          />
 
          <CardContact
            title="Email"
-           subTitle="juniordias_@live.com"
+           subTitle={emailAddress}
          />
     </Container>
   );

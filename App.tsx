@@ -2,6 +2,9 @@ import React from 'react';
 import AppLoading from 'expo-app-loading'
 import { StyleSheet, View } from 'react-native';
 
+import { Provider } from 'react-redux';
+import store from './src/store'
+
 import {
   useFonts,
   Roboto_400Regular,
@@ -27,10 +30,12 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavigationContainer>
-       <AppRoutes />
-      </NavigationContainer>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+         <AppRoutes />
+        </NavigationContainer>
+      </ThemeProvider>
+    </Provider>
   );
 }

@@ -33,7 +33,7 @@ export const ContentSectionHeader = styled.View`
   background-color: ${({ theme }) => theme.colors.grayBackground};
   justify-content: center;
   padding: 0px 17px;
-  margin-bottom: ${RFValue(21)};
+  margin-bottom: ${RFValue(21)}px;
 `;
 
 export const ContactContainer = styled.View`
