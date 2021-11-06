@@ -1,3 +1,10 @@
+export enum ActionTypes {
+  listContactRequest = 'LIST_CONTACT_REQUEST',
+  listContactSuccess = 'LIST_CONTACT_SUCCESS',
+  listContactFailure = 'LIST_CONTACT_FAILURE',
+}
+
+
 export interface IPhone {
   work: string;
   home: string;
@@ -28,3 +35,4 @@ export interface IContact {
 export interface IContactState {
   data: IContact[];
 }
+

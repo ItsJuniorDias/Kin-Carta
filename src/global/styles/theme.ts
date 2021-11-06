@@ -7,6 +7,7 @@ export default {
     grayBackground: '#F7F7FC',
     background: '#FFFFFF',
     divider: '#D9DBE9',
+    star: '#ffd403'
 
   },
 

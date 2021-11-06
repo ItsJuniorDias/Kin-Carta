@@ -2,6 +2,10 @@ import styled from 'styled-components/native';
 import { RFPercentage, RFValue} from 'react-native-responsive-fontsize';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+interface PropsMargin {
+  noFavorite: boolean;
+}
+
 export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background };
@@ -36,9 +40,11 @@ export const ContentSectionHeader = styled.View`
   margin-bottom: ${RFValue(21)}px;
 `;
 
-export const ContactContainer = styled.View`
+export const ContactContainer = styled.View<PropsMargin>`
   width: 100%;
-  padding: 0px 17px;
+  padding: ${({ noFavorite }) => noFavorite ? '0px 40px': '0px 17px'};
+  flex-direction: row;
+
 `;
 
 export const ContentRow = styled(TouchableOpacity)`
@@ -68,6 +74,17 @@ export const Divider = styled.View`
   height: ${RFValue(1)}px;
   padding: 0px 17px;
   margin-bottom: ${RFValue(16)}px;
+`;
+
+export const IconContet = styled.View`
+  /* margin-left: ${RFValue(-8)}px; */
+  margin-right: ${RFValue(4)}px;
+`;
+
+export const Indicator = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 `;
 
 

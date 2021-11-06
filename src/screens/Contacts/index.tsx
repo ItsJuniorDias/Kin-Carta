@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { View, SectionList, Text } from 'react-native';
-import { useSelector } from 'react-redux';
+import { View, SectionList, ActivityIndicator } from 'react-native';
+
+import { useDispatch ,useSelector } from 'react-redux';
+
+import { useTheme } from 'styled-components'
+import { MaterialIcons } from '@expo/vector-icons';
 
 import api from '../../services/api';
 import { IContact } from '../../store/modules/contact/types';
+
+import { listContactRequest } from '../../store/modules/contact/actions'
+
+import groupBy from '../../utils/groupBy';
+
 
 import {
   Container,
@@ -15,7 +24,9 @@ import {
   Title,
   SubtTitle,
   Divider,
-  ContentDivider
+  ContentDivider,
+  IconContet,
+  Indicator
 } from './styles';
 
 interface Props {
@@ -66,60 +77,18 @@ const DATAobject = [
 
 
 const Contacts = ({ title, navigation } : Props) => {
-  const [contact, setContact] = useState([]);
+  const theme = useTheme();
 
-  const [data, setData] = useState([])
+  const dispatch = useDispatch();
 
-  const groupBy = (array, key) => {
-    return array.reduce((result, currentValue) => {
-      (result[currentValue[key]] = result[currentValue[key]] || []).push(currentValue);
-
-      return result;
-    }, {})
-  }
 
   useEffect(() => {
-    api.get('').then((response) => {
-      const isFavoriteData = groupBy(response.data, 'isFavorite');
+    dispatch(listContactRequest());
+  },[])
 
-      console.log(isFavoriteData.false, 'IS Favorite false');
+  const contactData = useSelector(state => state.contact);
 
-      const formatDataContact =
-      [{ title: 'Favorite Contact', data: [...isFavoriteData.true].sort((a, b) => {
-        if (a.name > b.name) {
-          return 1;
-        }
-        if (a.name < b.name) {
-          return -1;
-        }
-        // a must be equal to b
-        return 0;
-      })},
-      { title: 'Other Contact', data: [...isFavoriteData.false].sort((a, b) => {
-        if (a.name > b.name) {
-          return 1;
-        }
-        if (a.name < b.name) {
-          return -1;
-        }
-        // a must be equal to b
-        return 0;
-      })}];
-
-      console.log(formatDataContact, 'FormatData')
-
-      setContact(formatDataContact);
-    })
-
-
-  }, [])
-
-  console.log(contact, 'Contact Json')
-  console.log(data, 'DATA')
-
-  const contacts = useSelector(state => state);
-
-  console.log(contacts, 'State')
+  console.log(contactData, 'data useSelector');
 
   const CardContact = ({
     title,
@@ -129,7 +98,8 @@ const Contacts = ({ title, navigation } : Props) => {
     phone,
     address,
     birthdate,
-    emailAddress
+    emailAddress,
+    isFavorite
   }: any) => {
    return(
      <>
@@ -146,9 +116,17 @@ const Contacts = ({ title, navigation } : Props) => {
            source={{ uri: `${avatarUser}`}}
          />
 
-          <ContactContainer>
-           <Title>{title}</Title>
-           <SubtTitle>{companyName}</SubtTitle>
+          <ContactContainer noFavorite={!isFavorite} >
+           {isFavorite && (
+              <IconContet>
+               <MaterialIcons name="star" size={18} color={theme.colors.star} />
+             </IconContet>
+           )}
+
+            <View>
+              <Title>{title}</Title>
+              <SubtTitle>{companyName}</SubtTitle>
+           </View>
          </ContactContainer>
       </ContentRow>
     </>
@@ -156,8 +134,9 @@ const Contacts = ({ title, navigation } : Props) => {
 
   return(
     <Container>
-      <SectionList
-        sections={contact}
+      {contactData.length === 2  ? (
+        <SectionList
+        sections={contactData}
         keyExtractor={(item, index) => item.id}
         ItemSeparatorComponent={() => (
         <ContentDivider>
@@ -175,6 +154,7 @@ const Contacts = ({ title, navigation } : Props) => {
               address={item.address}
               birthdate={item.birthdate}
               emailAddress={item.emailAddress}
+              isFavorite={item.isFavorite}
             />
          )}
         renderSectionHeader={({ section: { title } }) => (
@@ -183,6 +163,11 @@ const Contacts = ({ title, navigation } : Props) => {
           </ContentSectionHeader>
         )}
       />
+      ): (
+        <Indicator>
+         <ActivityIndicator />
+        </Indicator>
+      )}
  </Container>
  )
 };
