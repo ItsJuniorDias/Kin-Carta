@@ -21,7 +21,7 @@ Challenge code
 - **Add** item to favorites list
 
 ### What was missing feature
-- Bookmark item as favorite
+- Deselect item as favorite
 
 **Cloning project**
 
