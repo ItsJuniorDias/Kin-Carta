@@ -20,7 +20,7 @@ Challenge code
 - **Show** single item details
 - **Add** item to favorites list
 
-### What was missing
+### What was missing feature
 - Bookmark item as favorite
 
 **Cloning project**
