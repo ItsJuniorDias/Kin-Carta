@@ -15,10 +15,10 @@ Challenge code
 - **Redux-Saga** for handling asynchronous requests within Redux
 
 ### Feature
-- Show data on screen in sections
-- Sort the data alphabetically
-- Show single item details
-- add item to favorites list
+- **Show** data on screen in sections
+- **Sort** the data alphabetically
+- **Show** single item details
+- **Add** item to favorites list
 
 ### What was missing
 - Bookmark item as favorite
