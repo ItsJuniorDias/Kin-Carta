@@ -14,6 +14,14 @@ Challenge code
 - **Redux** for Global state control
 - **Redux-Saga** for handling asynchronous requests within Redux
 
+### Feature
+- Show data on screen in sections
+- Sort the data alphabetically
+- Show single item details
+- add item to favorites list
+
+### What was missing
+- Bookmark item as favorite
 
 **Cloning project**
 
