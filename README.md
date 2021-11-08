@@ -5,6 +5,7 @@ Challenge code
 
 
 ### Tools
+- Using **Expo** Bare workflow for application development
 - **Axios** were used for consumption by Api
 - **Styled-component** to work with customizable components
 - **Typescript** as a development language facilitating the definition of types
