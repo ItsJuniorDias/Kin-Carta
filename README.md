@@ -17,7 +17,7 @@ Challenge code
 **Cloning project**
 
 ``` 
-$ git clone 
+$ git clone https://github.com/ItsJuniorDias/Kin-Carta.git
 ```
 
 
