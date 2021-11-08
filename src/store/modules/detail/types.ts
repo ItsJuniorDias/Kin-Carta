@@ -1,9 +1,6 @@
 export enum ActionTypes {
-  listContactRequest = 'LIST_CONTACT_REQUEST',
-  listContactSuccess = 'LIST_CONTACT_SUCCESS',
-  listContactFailure = 'LIST_CONTACT_FAILURE',
-  passToFavorite = 'PASS_TO_FAVORITE',
-  passToFavoriteSuccess = 'PASS_TO_FAVORITE_SUCCESS'
+  detailContact = 'DETAIL_CONTACT',
+  detailSuccess = 'DETAIL_SUCCESS'
 }
 
 

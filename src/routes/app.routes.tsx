@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useTheme } from 'styled-components'
-import { MaterialIcons } from '@expo/vector-icons';
+
 const { Navigator, Screen} = createNativeStackNavigator();
+
+
+import HeaderFavorite from '../components/HeaderFavorite';
 
 import Contacts from '../screens/Contacts'
 import Details from '../screens/Details'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 export function AppRoutes() {
   const theme = useTheme();
+
 
   return(
     <Navigator
@@ -31,9 +35,7 @@ export function AppRoutes() {
         options={{
           title: '',
           headerRight: () => (
-           <TouchableOpacity>
-            <MaterialIcons name="star" size={24} color={theme.colors.star} />
-           </TouchableOpacity>
+             <HeaderFavorite />
            ),
         }}
       />

@@ -3,7 +3,7 @@ import produce from 'immer';
 import { IContactState, IContact, ActionTypes } from './types';
 
 const INITIAL_STATE: IContactState = {
-  data: []
+  data: [],
 }
 
 const contact: Reducer<IContactState> = (
@@ -17,6 +17,13 @@ const contact: Reducer<IContactState> = (
 
         return [
           ...contact
+        ]
+      }
+      case ActionTypes.passToFavoriteSuccess: {
+        const { toFavorite } = action.payload;
+
+        return [
+          ...toFavorite
         ]
       }
       case ActionTypes.listContactRequest: {

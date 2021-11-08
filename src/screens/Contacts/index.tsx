@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, SectionList, ActivityIndicator } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { useDispatch ,useSelector } from 'react-redux';
 
@@ -9,7 +10,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import api from '../../services/api';
 import { IContact } from '../../store/modules/contact/types';
 
-import { listContactRequest } from '../../store/modules/contact/actions'
+import { listContactRequest, detailContact } from '../../store/modules/contact/actions'
 
 import groupBy from '../../utils/groupBy';
 
@@ -81,16 +82,16 @@ const Contacts = ({ title, navigation } : Props) => {
 
   const dispatch = useDispatch();
 
+  const contactData = useSelector(state => state.contact);
 
   useEffect(() => {
     dispatch(listContactRequest());
   },[])
 
-  const contactData = useSelector(state => state.contact);
-
-  console.log(contactData, 'data useSelector');
+  console.log(contactData, 'data useSelector Contact');
 
   const CardContact = ({
+    id,
     title,
     avatarUser,
     companyName,
@@ -101,16 +102,19 @@ const Contacts = ({ title, navigation } : Props) => {
     emailAddress,
     isFavorite
   }: any) => {
+
    return(
      <>
-     <ContentRow onPress={() => navigation.navigate('Details', {
+     <ContentRow activeOpacity={0.6} onPress={() => navigation.navigate('Details', {
+       id,
        avatarLarge,
        title,
        companyName,
        phone,
        address,
        birthdate,
-       emailAddress
+       emailAddress,
+       isFavorite
      })}>
          <Avatar
            source={{ uri: `${avatarUser}`}}
@@ -146,6 +150,7 @@ const Contacts = ({ title, navigation } : Props) => {
         // contentContainerStyle={{ paddingBottom: 20, backgroundColor: 'blue' }}
         renderItem={({ item }) => (
             <CardContact
+              id={item.id}
               title={item.name}
               avatarUser={item.smallImageURL}
               avatarLarge={item.largeImageURL}

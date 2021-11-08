@@ -1,11 +1,9 @@
 import { ActionTypes,IContact } from './types';
 
-export function listContactRequest(contact: IContact) {
+export function listContactRequest() {
   return {
     type: ActionTypes.listContactRequest,
-    payload: {
-      contact
-    }
+    payload: {}
   }
 }
 
@@ -24,3 +22,21 @@ export function listContactFailure() {
     payload: {}
   }
 }
+
+export function passToFavorite(toFavorite: any) {
+  return {
+    type: ActionTypes.passToFavorite,
+    toFavorite
+  }
+}
+
+export function passToFavoriteSuccess(toFavorite: any) {
+  return {
+    type: ActionTypes.passToFavoriteSuccess,
+    payload: {
+      toFavorite
+    }
+  }
+}
+
+

@@ -2,9 +2,18 @@ import styled from 'styled-components/native';
 import { RFPercentage, RFValue} from 'react-native-responsive-fontsize';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export const Container = styled.ScrollView`
+export const ContentArea = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
+`;
+
+export const Container = styled.ScrollView`
+`;
+
+export const Header = styled.View`
+  width: 100%;
+  height: ${RFValue(54)}px;
+  background-color: ${({ theme }) => theme.colors.grayBackground};;
 `;
 
 export const Content = styled.View`
