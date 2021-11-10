@@ -3,13 +3,13 @@ import { View } from 'react-native';
 import { useTheme } from 'styled-components'
 import { Ionicons } from '@expo/vector-icons';
 
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 import {
   ContentBody,
   TitleNumber,
   NumberType,
   IconContent,
-  Touch,
-
 } from './styles';
 
 interface PropsCard {
@@ -30,12 +30,21 @@ const CardContact = ({ subTitle, title, isNumber}: PropsCard) => {
 
           {isNumber && (
              <IconContent>
-             <Touch>
-               <Ionicons name="chatbubble-ellipses-outline" size={24} color={theme.colors.blackText} />
-              </Touch>
-             <Touch>
-               <Ionicons name="md-call-outline" size={24} color={theme.colors.blackText} />
-             </Touch>
+             <TouchableOpacity>
+               <Ionicons
+                 name="chatbubble-ellipses-outline"
+                 size={24}
+                 color={theme.colors.blackText}
+                />
+              </TouchableOpacity>
+
+             <TouchableOpacity>
+               <Ionicons
+                name="md-call-outline"
+                size={24}
+                color={theme.colors.blackText}
+              />
+             </TouchableOpacity>
            </IconContent>
           )}
     </ContentBody>

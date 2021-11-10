@@ -7,13 +7,13 @@ export enum ActionTypes {
 }
 
 
-export interface IPhone {
+interface IPhone {
   work: string;
   home: string;
   mobile: string;
 }
 
-export interface IAddress {
+interface IAddress {
   street: string;
   city: string;
   state: string;
@@ -34,6 +34,10 @@ export interface IContact {
   address: IAddress;
 }
 
+export interface IDataSectionContact {
+  title: string;
+  data: IContact[];
+}
 
 
 export interface IContactState {

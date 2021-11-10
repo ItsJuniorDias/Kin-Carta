@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { RFPercentage, RFValue} from 'react-native-responsive-fontsize';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface PropsMargin {
@@ -49,10 +49,8 @@ export const ContactContainer = styled.View<PropsMargin>`
 
 export const ContentRow = styled(TouchableOpacity)`
   flex-direction: row;
-  /* margin-top: ${RFValue(21)}px; */
   margin-bottom: ${RFValue(16)}px;
   padding: 0 16px;
-  /* background-color: red; */
 `;
 
 export const ContenAvatar = styled.View`
@@ -66,7 +64,7 @@ export const Avatar = styled.Image`
 `;
 
 export const ContentDivider = styled.View`
-    padding: 0px 17px;
+  padding: 0px 17px;
 `;
 
 export const Divider = styled.View`
@@ -77,7 +75,6 @@ export const Divider = styled.View`
 `;
 
 export const IconContet = styled.View`
-  /* margin-left: ${RFValue(-8)}px; */
   margin-right: ${RFValue(4)}px;
 `;
 

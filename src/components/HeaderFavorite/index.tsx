@@ -1,5 +1,4 @@
-import React, { useState }  from 'react';
-import { View } from 'react-native';
+import React from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -7,32 +6,23 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { passToFavorite } from '../../store/modules/contact/actions';
 
+import {  RootState, AppDispatch } from '../../store';
+
 import { useTheme } from 'styled-components'
-import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 
-
-import { Container } from './styles';
-
-const HeaderFavorite: React.FC = () => {
+const HeaderFavorite = () => {
   const navigation = useNavigation();
 
-  const [ iconFavorite, setIconFavorite ] = useState(false);
-
-  const detail = useSelector(state => state.detail);
-  const dispatch = useDispatch();
-
-  console.log(detail, 'Header Favorite')
+  const detail = useSelector<RootState>(state => state.detail);
+  const dispatch = useDispatch<AppDispatch>();
 
   const { isFavorite } = detail;
-
-  console.log(isFavorite)
 
   const theme = useTheme();
 
   const handleFavorite = () => {
     dispatch(passToFavorite(detail));
-
     navigation.goBack();
   }
 

@@ -1,6 +1,6 @@
 import { Reducer } from 'react';
 import produce from 'immer';
-import { IContactState, IContact, ActionTypes } from './types';
+import { IContactState, ActionTypes } from './types';
 
 const INITIAL_STATE: IContactState = {
   data: [],

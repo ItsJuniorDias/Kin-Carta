@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { ScrollView } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
 
@@ -8,13 +9,11 @@ import { detailContact } from '../../store/modules/detail/actions'
 
 import {
   ContentArea,
-  Container,
   Content,
   Avatar,
   NameUser,
   Number,
   DividerHeader,
-  Header
 } from './styles';
 
 interface PhoneProps {
@@ -62,11 +61,14 @@ const Details = () => {
     isFavorite
   }
 
-  dispatch(detailContact(data));
+  useEffect(() => {
+    dispatch(detailContact(data));
+  },[]);
+
 
   return (
       <ContentArea>
-        <Container>
+        <ScrollView>
           <Content>
             <Avatar
               source={{
@@ -116,7 +118,7 @@ const Details = () => {
               title="Email"
               subTitle={emailAddress}
             />
-        </Container>
+        </ScrollView>
       </ContentArea>
   );
 }

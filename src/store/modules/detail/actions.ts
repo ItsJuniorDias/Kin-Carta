@@ -1,6 +1,6 @@
-import { ActionTypes, IContact } from './types';
+import { ActionTypes, IDetails } from './types';
 
-export function detailContact(details: any) {
+export function detailContact(details: IDetails) {
   return {
     type: ActionTypes.detailContact,
     payload: {
@@ -10,7 +10,7 @@ export function detailContact(details: any) {
 }
 
 
-export function detailContactSuccess(details: any) {
+export function detailContactSuccess(details: IDetails) {
   return {
     type: ActionTypes.detailSuccess,
     payload: {

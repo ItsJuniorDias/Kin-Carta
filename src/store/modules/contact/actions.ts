@@ -1,4 +1,5 @@
-import { ActionTypes,IContact } from './types';
+import { ActionTypes, IDataSectionContact } from './types';
+import { IDetails } from '../detail/types'
 
 export function listContactRequest() {
   return {
@@ -7,7 +8,7 @@ export function listContactRequest() {
   }
 }
 
-export function listContactSuccess(contact: IContact) {
+export function listContactSuccess(contact: IDataSectionContact) {
   return {
     type: ActionTypes.listContactSuccess,
     payload: {

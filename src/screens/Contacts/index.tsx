@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View, SectionList, ActivityIndicator } from 'react-native';
 
 import { useDispatch ,useSelector } from 'react-redux';
+import {  RootState, AppDispatch } from '../../store';
 
 import { useTheme } from 'styled-components'
 import { MaterialIcons } from '@expo/vector-icons';
@@ -25,20 +26,17 @@ import {
   Indicator
 } from './styles';
 
-
 const Contacts = () => {
   const theme = useTheme();
   const navigation = useNavigation();
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const contactData = useSelector(state => state.contact);
+  const contactData = useSelector<RootState>(state => state.contact);
 
   useEffect(() => {
     dispatch(listContactRequest());
   },[])
-
-  console.log(contactData, 'data useSelector Contact');
 
   const CardContact = ({
     id,
@@ -97,7 +95,6 @@ const Contacts = () => {
           <Divider />
          </ContentDivider>
         )}
-        // contentContainerStyle={{ paddingBottom: 20, backgroundColor: 'blue' }}
         renderItem={({ item }) => (
             <CardContact
               id={item.id}

@@ -1,11 +1,5 @@
 import styled from 'styled-components/native';
 import { RFPercentage, RFValue} from 'react-native-responsive-fontsize';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
-export const Container = styled.View`
-
-`;
-
 
 export const TitleNumber = styled.Text`
   font-family: ${({ theme }) => theme.fonts.medium};
@@ -23,12 +17,9 @@ export const NumberType = styled.Text`
   height: ${RFValue(50)}px;
 `;
 
-export const Touch = styled(TouchableOpacity)``;
-
 export const ContentBody = styled.View`
   width: 100%;
   height: ${RFValue(54)}px;
-  /* background-color: red; */
   padding: 16px 16px;
   margin-bottom: ${RFValue(21)}px;
   flex-direction: row;
@@ -38,7 +29,6 @@ export const ContentBody = styled.View`
 export const IconContent = styled.View`
   width: ${RFPercentage(9)}px;
   flex-direction: row;
-  /* background-color: blue; */
   justify-content: space-between;
 `;
 

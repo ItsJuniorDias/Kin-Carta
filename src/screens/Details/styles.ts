@@ -1,13 +1,9 @@
 import styled from 'styled-components/native';
 import { RFPercentage, RFValue} from 'react-native-responsive-fontsize';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const ContentArea = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
-`;
-
-export const Container = styled.ScrollView`
 `;
 
 export const Header = styled.View`
@@ -19,11 +15,8 @@ export const Header = styled.View`
 export const Content = styled.View`
   width: 100%;
   height: ${RFPercentage(31)}px;
-
   align-items: center;
   padding-top: ${RFValue(24)}px;
-
-  /* background-color: blue; */
 `;
 
 export const Avatar = styled.Image`

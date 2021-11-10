@@ -7,15 +7,11 @@ import groupBy from '../../../utils/groupBy'
 import { ActionTypes, IContact} from './types';
 
 import {
-  listContactRequest,
   listContactSuccess,
   listContactFailure,
   passToFavoriteSuccess
 } from './actions';
-import { useSelector } from 'react-redux'
-
-type ListContactRequest = ReturnType<typeof listContactRequest>;
-
+import { Icon } from '@expo/vector-icons/build/createIconSet';
 
 function* listContact() {
   try {
@@ -64,7 +60,7 @@ function* passToFavorite(payload) {
   const contactOtherListFavorite = contact[1];
   const { data } = contactOtherListFavorite;
 
-  const findContact = data.find((item: any) => item.id === id);
+  const findContact = data.find((item: IContact) => item.id === id);
 
   const dataFavorite = {
    ...findContact,
@@ -79,7 +75,7 @@ function* passToFavorite(payload) {
     dataFavorite
   ];
 
-  const removeItemOtherFavorite = data.filter(item => item.id !== id);
+  const removeItemOtherFavorite = data.filter((item: IContact) => item.id !== id);
 
   const dataReducerContact = [
     {
