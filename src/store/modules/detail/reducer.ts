@@ -1,13 +1,13 @@
 import { Reducer } from 'react';
 import produce from 'immer';
-import { IDetailsState, ActionTypes } from './types';
+import { IDetails, ActionTypes } from './types';
 
-const INITIAL_STATE: IDetailsState  = {
+const INITIAL_STATE: IDetails  = {
   id: '',
   isFavorite: false
 }
 
-const detail: Reducer<IContactState> = (
+const detail: Reducer<IDetails> = (
   state = INITIAL_STATE,
   action,
 ) => {

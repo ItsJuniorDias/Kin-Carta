@@ -5,7 +5,11 @@ import { ActionTypes } from './types';
 import { detailContactSuccess } from './actions'
 
 function* detailContact(payload: any) {
-  yield put(detailContactSuccess(payload))
+  try {
+    yield put(detailContactSuccess(payload));
+   } catch(e) {
+     console.log(e)
+   }
 }
 
 export default all([

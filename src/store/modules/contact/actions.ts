@@ -1,5 +1,4 @@
 import { ActionTypes, IDataSectionContact } from './types';
-import { IDetails } from '../detail/types'
 
 export function listContactRequest() {
   return {

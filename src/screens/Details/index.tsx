@@ -3,9 +3,10 @@ import { ScrollView } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useRoute } from '@react-navigation/native';
 
-import CardContact from '../../components/CardContact'
+import CardContact from '../../components/CardContact';
 
-import { detailContact } from '../../store/modules/detail/actions'
+import { detailContact } from '../../store/modules/detail/actions';
+import { IContact } from '../../store/modules/contact/types';
 
 import {
   ContentArea,
@@ -16,43 +17,16 @@ import {
   DividerHeader,
 } from './styles';
 
-interface PhoneProps {
-  home: string;
-  mobile: string;
-  work: string;
-}
-
-interface AddressProps {
-  city: string;
-  country: string;
-  state: string;
-  street: string;
-  zipCode: string;
-}
-
-interface AvatarProps {
-  id: string;
-  avatarLarge: string;
-  title: string;
-  companyName: string;
-  phone: PhoneProps;
-  address: AddressProps;
-  birthdate: string;
-  emailAddress: string;
-  isFavorite: boolean
-}
-
 interface PropsRoutes {
-  params: AvatarProps;
+  params: IContact;
 }
-
 
 const Details = () => {
   const route = useRoute<PropsRoutes>();
 
   const dispatch = useDispatch();
 
-  const { id, avatarLarge, title, companyName, phone: { home , mobile, work},
+  const { id, largeImageURL, title, companyName, phone: { home , mobile, work},
   address: { city, country, state, street, zipCode }, birthdate, emailAddress,
   isFavorite } = route.params;
 
@@ -72,7 +46,7 @@ const Details = () => {
           <Content>
             <Avatar
               source={{
-                uri: `${avatarLarge}`
+                uri: `${largeImageURL}`
               }}
             />
 

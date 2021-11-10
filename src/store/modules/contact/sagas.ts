@@ -11,7 +11,6 @@ import {
   listContactFailure,
   passToFavoriteSuccess
 } from './actions';
-import { Icon } from '@expo/vector-icons/build/createIconSet';
 
 function* listContact() {
   try {

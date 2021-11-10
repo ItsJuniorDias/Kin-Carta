@@ -43,19 +43,18 @@ const Contacts = () => {
     title,
     avatarUser,
     companyName,
-    avatarLarge,
+    largeImageURL,
     phone,
     address,
     birthdate,
     emailAddress,
     isFavorite
   }: any) => {
-
    return(
      <>
      <ContentRow activeOpacity={0.6} onPress={() => navigation.navigate('Details', {
        id,
-       avatarLarge,
+       largeImageURL,
        title,
        companyName,
        phone,
@@ -100,7 +99,7 @@ const Contacts = () => {
               id={item.id}
               title={item.name}
               avatarUser={item.smallImageURL}
-              avatarLarge={item.largeImageURL}
+              largeImageURL={item.largeImageURL}
               companyName={item.companyName}
               phone={item.phone}
               address={item.address}
