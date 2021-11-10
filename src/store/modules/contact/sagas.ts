@@ -49,8 +49,6 @@ function* listContact() {
     })}];
 
     yield put(listContactSuccess(formatDataContact));
-
-    console.log(response.data, 'Data saga')
   } catch(e) {
     console.log(e)
      yield put(listContactFailure())

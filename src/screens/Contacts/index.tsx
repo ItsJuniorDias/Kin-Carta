@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, SectionList, ActivityIndicator } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
 
 import { useDispatch ,useSelector } from 'react-redux';
 
 import { useTheme } from 'styled-components'
 import { MaterialIcons } from '@expo/vector-icons';
 
-import api from '../../services/api';
-import { IContact } from '../../store/modules/contact/types';
+import { useNavigation } from '@react-navigation/native';
 
-import { listContactRequest, detailContact } from '../../store/modules/contact/actions'
-
-import groupBy from '../../utils/groupBy';
-
+import { listContactRequest } from '../../store/modules/contact/actions'
 
 import {
   Container,
@@ -30,55 +25,10 @@ import {
   Indicator
 } from './styles';
 
-interface Props {
-  title: string;
-}
 
-const DATAobject = [
-  {
-    title: "Favorite Contacts",
-    data: [
-      {
-        name: "Winnie-the-Pooh",
-        id: '19',
-        smallImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/winnie-the-pooh-small.jpg",
-        largeImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/winnie-the-pooh-large.jpg",
-        companyName: "Honey Bear, Inc",
-      },
-      {
-        name: "Miss Piggy",
-        id: "13",
-        smallImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/miss-piggy-small.jpg",
-        largeImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/miss-piggy-large.jpg",
-        companyName: "Muppets, Baby",
-      },
-    ]
-  },
-  {
-    title: "Other Contacts",
-    data: [
-      {
-        name: "Miss Piggy",
-        id: "14",
-        smallImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/miss-piggy-small.jpg",
-        largeImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/miss-piggy-large.jpg",
-        companyName: "Muppets, Baby",
-      },
-      {
-        name: "Winnie-the-Pooh",
-        id: "20",
-        smallImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/winnie-the-pooh-small.jpg",
-        largeImageURL: "https://s3.amazonaws.com/technical-challenge/v3/images/winnie-the-pooh-large.jpg",
-        companyName: "Honey Bear, Inc",
-      },
-    ]
-  },
-];
-
-
-
-const Contacts = ({ title, navigation } : Props) => {
+const Contacts = () => {
   const theme = useTheme();
+  const navigation = useNavigation();
 
   const dispatch = useDispatch();
 

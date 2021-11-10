@@ -1,10 +1,6 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { useTheme } from 'styled-components'
-import { useRoute, RouteProp } from '@react-navigation/native';
-
-import { Ionicons } from '@expo/vector-icons';
+import { useRoute } from '@react-navigation/native';
 
 import CardContact from '../../components/CardContact'
 
@@ -21,10 +17,30 @@ import {
   Header
 } from './styles';
 
+interface PhoneProps {
+  home: string;
+  mobile: string;
+  work: string;
+}
+
+interface AddressProps {
+  city: string;
+  country: string;
+  state: string;
+  street: string;
+  zipCode: string;
+}
+
 interface AvatarProps {
+  id: string;
   avatarLarge: string;
   title: string;
   companyName: string;
+  phone: PhoneProps;
+  address: AddressProps;
+  birthdate: string;
+  emailAddress: string;
+  isFavorite: boolean
 }
 
 interface PropsRoutes {
@@ -33,9 +49,7 @@ interface PropsRoutes {
 
 
 const Details = () => {
-  const theme = useTheme();
   const route = useRoute<PropsRoutes>();
-  console.log(route.params, 'PARAMS')
 
   const dispatch = useDispatch();
 
