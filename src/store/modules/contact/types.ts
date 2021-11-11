@@ -33,7 +33,6 @@ export interface IContact {
   birthdate: string;
   phone: IPhone;
   address: IAddress;
-  title?: string;
 }
 
 export interface IDataSectionContact {

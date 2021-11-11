@@ -26,7 +26,7 @@ const Details = () => {
 
   const dispatch = useDispatch();
 
-  const { id, largeImageURL, title, companyName, phone: { home , mobile, work},
+  const { id, largeImageURL, name, companyName, phone: { home , mobile, work},
   address: { city, country, state, street, zipCode }, birthdate, emailAddress,
   isFavorite } = route.params;
 
@@ -51,7 +51,7 @@ const Details = () => {
             />
 
               <NameUser>
-                {title}
+                {name}
               </NameUser>
               <Number>{companyName}</Number>
           </Content>
