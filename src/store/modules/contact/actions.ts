@@ -39,4 +39,20 @@ export function passToFavoriteSuccess(toFavorite: any) {
   }
 }
 
+export function removeFromFavorite(removeFavorite: any) {
+  return {
+    type: ActionTypes.removeFromFavorite,
+    removeFavorite
+  }
+}
+
+export function removeFromFavoriteSuccess(removeFavorite: any) {
+  return {
+    type: ActionTypes.removeFromFavoriteSuccess,
+    payload: {
+      removeFavorite
+    }
+  }
+}
+
 

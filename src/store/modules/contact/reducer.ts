@@ -26,6 +26,13 @@ const contact: Reducer<IContactState> = (
           ...toFavorite
         ]
       }
+      case ActionTypes.removeFromFavoriteSuccess: {
+        const { removeFavorite } = action.payload;
+
+        return [
+          ...removeFavorite
+        ]
+      }
       case ActionTypes.listContactRequest: {
         break;
       }

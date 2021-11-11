@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { passToFavorite } from '../../store/modules/contact/actions';
+import { passToFavorite, removeFromFavorite } from '../../store/modules/contact/actions';
 
 import {  RootState, AppDispatch } from '../../store';
 
@@ -17,12 +17,19 @@ const HeaderFavorite = () => {
   const detail = useSelector<RootState>(state => state.detail);
   const dispatch = useDispatch<AppDispatch>();
 
+  console.log(detail, 'ITEM DETAILS')
+
   const { isFavorite } = detail;
 
   const theme = useTheme();
 
   const handleFavorite = () => {
-    dispatch(passToFavorite(detail));
+    if(isFavorite) {
+      dispatch(removeFromFavorite(detail));
+    } else {
+      dispatch(passToFavorite(detail));
+    }
+
     navigation.goBack();
   }
 

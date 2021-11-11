@@ -3,9 +3,10 @@ export enum ActionTypes {
   listContactSuccess = 'LIST_CONTACT_SUCCESS',
   listContactFailure = 'LIST_CONTACT_FAILURE',
   passToFavorite = 'PASS_TO_FAVORITE',
-  passToFavoriteSuccess = 'PASS_TO_FAVORITE_SUCCESS'
+  passToFavoriteSuccess = 'PASS_TO_FAVORITE_SUCCESS',
+  removeFromFavorite = 'REMOVE_FROM_FAVORITE',
+  removeFromFavoriteSuccess = 'REMOVE_FROM_FAVORITE_SUCCESS',
 }
-
 
 interface IPhone {
   work: string;
@@ -32,6 +33,7 @@ export interface IContact {
   birthdate: string;
   phone: IPhone;
   address: IAddress;
+  title?: string;
 }
 
 export interface IDataSectionContact {

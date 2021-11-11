@@ -9,7 +9,6 @@ export function detailContact(details: IDetails) {
   }
 }
 
-
 export function detailContactSuccess(details: IDetails) {
   return {
     type: ActionTypes.detailSuccess,

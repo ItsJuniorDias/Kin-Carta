@@ -9,7 +9,8 @@ import { ActionTypes, IContact} from './types';
 import {
   listContactSuccess,
   listContactFailure,
-  passToFavoriteSuccess
+  passToFavoriteSuccess,
+  removeFromFavoriteSuccess
 } from './actions';
 
 function* listContact() {
@@ -95,7 +96,53 @@ function* passToFavorite(payload) {
 
 }
 
+function* removeFromFavorite(payload) {
+  const state = yield select();
+  const { removeFavorite: { id } } = payload;
+
+  const { contact } = state;
+
+  const listFavorite = contact[0];
+  const { data } = listFavorite;
+
+  const findContact = data.find((item: IContact) => item.id === id);
+
+  const dataRemoveFavorite = {
+    ...findContact,
+    isFavorite: false,
+  };
+
+   const otherContacts = contact[1];
+   const dataOtherContact = otherContacts['data'];
+
+   const dataNewOtherContacts = [
+    ...dataOtherContact,
+    dataRemoveFavorite
+  ];
+
+  const removeItemFavorite = data.filter((item: IContact) => item.id !== id);
+
+  const dataReducerContact = [
+    {
+      title: 'Favorite Contact',
+      data: removeItemFavorite
+    },
+    {
+      title: 'Other Contact',
+      data: dataNewOtherContacts
+    }
+  ]
+
+  try {
+   yield put(removeFromFavoriteSuccess(dataReducerContact));
+  } catch(e) {
+    console.log(e)
+  }
+
+}
+
 export default all([
   takeLatest(ActionTypes.listContactRequest, listContact),
   takeLatest(ActionTypes.passToFavorite, passToFavorite),
+  takeLatest(ActionTypes.removeFromFavorite, removeFromFavorite),
 ])
