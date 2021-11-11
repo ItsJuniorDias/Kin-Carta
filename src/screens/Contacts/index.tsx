@@ -25,6 +25,7 @@ import {
   IconContet,
   Indicator
 } from './styles';
+import { IContact } from '../../store/modules/contact/types';
 
 const Contacts = () => {
   const theme = useTheme();
@@ -40,8 +41,8 @@ const Contacts = () => {
 
   const CardContactSection = ({
     id,
-    title,
-    avatarUser,
+    name,
+    smallImageURL,
     companyName,
     largeImageURL,
     phone,
@@ -49,13 +50,13 @@ const Contacts = () => {
     birthdate,
     emailAddress,
     isFavorite
-  }: any) => {
+  }: IContact) => {
    return(
      <>
      <ContentRow activeOpacity={0.6} onPress={() => navigation.navigate('Details', {
        id,
        largeImageURL,
-       title,
+       name,
        companyName,
        phone,
        address,
@@ -64,7 +65,7 @@ const Contacts = () => {
        isFavorite
      })}>
          <Avatar
-           source={{ uri: `${avatarUser}`}}
+           source={{ uri: `${smallImageURL}`}}
          />
 
           <ContactContainer noFavorite={!isFavorite} >
@@ -75,7 +76,7 @@ const Contacts = () => {
            )}
 
             <View>
-              <Title>{title}</Title>
+              <Title>{name}</Title>
               <SubtTitle>{companyName}</SubtTitle>
            </View>
          </ContactContainer>
@@ -97,8 +98,8 @@ const Contacts = () => {
         renderItem={({ item }) => (
             <CardContactSection
               id={item.id}
-              title={item.name}
-              avatarUser={item.smallImageURL}
+              name={item.name}
+              smallImageURL={item.smallImageURL}
               largeImageURL={item.largeImageURL}
               companyName={item.companyName}
               phone={item.phone}
