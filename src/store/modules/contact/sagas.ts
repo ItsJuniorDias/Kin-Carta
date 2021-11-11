@@ -75,12 +75,23 @@ function* passToFavorite(payload) {
     dataFavorite
   ];
 
+  const formatData = dataNewListIsFavorite.sort((a, b) => {
+    if (a.name > b.name) {
+      return 1;
+    }
+    if (a.name < b.name) {
+      return -1;
+    }
+    // a must be equal to b
+    return 0;
+  })
+
   const removeItemOtherFavorite = data.filter((item: IContact) => item.id !== id);
 
   const dataReducerContact = [
     {
       title: 'Favorite Contact',
-      data: dataNewListIsFavorite
+      data: formatData
     },
     {
       title: 'Other Contact',
@@ -120,6 +131,17 @@ function* removeFromFavorite(payload) {
     dataRemoveFavorite
   ];
 
+  const formatOtherContact = dataNewOtherContacts.sort((a, b) => {
+    if (a.name > b.name) {
+      return 1;
+    }
+    if (a.name < b.name) {
+      return -1;
+    }
+    // a must be equal to b
+    return 0;
+  });
+
   const removeItemFavorite = data.filter((item: IContact) => item.id !== id);
 
   const dataReducerContact = [
@@ -129,7 +151,7 @@ function* removeFromFavorite(payload) {
     },
     {
       title: 'Other Contact',
-      data: dataNewOtherContacts
+      data: formatOtherContact
     }
   ]
 
