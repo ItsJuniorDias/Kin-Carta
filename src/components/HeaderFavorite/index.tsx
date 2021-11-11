@@ -17,8 +17,6 @@ const HeaderFavorite = () => {
   const detail = useSelector<RootState>(state => state.detail);
   const dispatch = useDispatch<AppDispatch>();
 
-  console.log(detail, 'ITEM DETAILS')
-
   const { isFavorite } = detail;
 
   const theme = useTheme();
