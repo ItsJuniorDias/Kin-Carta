@@ -9,7 +9,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { listContactRequest } from '../../store/modules/contact/actions'
+import { listContactRequest } from '../../store/modules/contact/actions';
 
 import {
   Container,
@@ -38,7 +38,7 @@ const Contacts = () => {
     dispatch(listContactRequest());
   },[])
 
-  const CardContact = ({
+  const CardContactSection = ({
     id,
     title,
     avatarUser,
@@ -95,7 +95,7 @@ const Contacts = () => {
          </ContentDivider>
         )}
         renderItem={({ item }) => (
-            <CardContact
+            <CardContactSection
               id={item.id}
               title={item.name}
               avatarUser={item.smallImageURL}

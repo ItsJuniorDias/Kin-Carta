@@ -97,7 +97,7 @@ function* passToFavorite(payload) {
       title: 'Other Contact',
       data: removeItemOtherFavorite
     }
-  ]
+  ];
 
   try {
    yield put(passToFavoriteSuccess(dataReducerContact));
@@ -153,7 +153,7 @@ function* removeFromFavorite(payload) {
       title: 'Other Contact',
       data: formatOtherContact
     }
-  ]
+  ];
 
   try {
    yield put(removeFromFavoriteSuccess(dataReducerContact));
