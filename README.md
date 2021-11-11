@@ -15,7 +15,7 @@ Challenge code
 - **Redux** for Global state control
 - **Redux-Saga** for handling asynchronous requests within Redux
 
-### Feature
+### Features
 - **Show** data on screen in sections
 - **Sort** the data alphabetically
 - **Show** single item details
