@@ -19,9 +19,7 @@ Challenge code
 - **Sort** the data alphabetically
 - **Show** single item details
 - **Add** item to favorites list
-
-### What was missing feature
-- Deselect item as favorite
+- **Deselect** item as favorite
 
 **Cloning project**
 
